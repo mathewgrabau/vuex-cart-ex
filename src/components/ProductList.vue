@@ -2,10 +2,21 @@
   <div>
       <h2>Products</h2>
     <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
       <tbody>
         <tr v-for="product in products" :key="product.name">
           <td>{{ product.name }}</td>
           <td>{{ product.price }}</td>
+          <td>
+              <button>Add to cart</button>
+              <button>Remove from cart</button>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -16,8 +27,8 @@
 import { mapState, mapActions } from "vuex";
 
 export default {
-  data() {
-    return { ...mapState(["products"]) };
+  computed: {
+    ...mapState(["products"])
   },
   methods: {
     ...mapActions(["addToCart", "removeFromCart"]),
