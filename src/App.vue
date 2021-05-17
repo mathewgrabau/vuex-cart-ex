@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <product-list />
-    <checkout />
+    <product-list v-if="!orderComplete"/>
     <cart />
+    <checkout />
   </div>
 </template>
 
@@ -10,6 +10,7 @@
 import ProductList from "./components/ProductList.vue";
 import Cart from "./components/Cart.vue";
 import Checkout from "./components/Checkout.vue";
+import { mapState } from "vuex";
 
 export default {
   name: "App",
@@ -18,6 +19,9 @@ export default {
     Cart,
     Checkout,
   },
+  computed: {
+    ...mapState(["orderComplete"])
+  }
 };
 </script>
 

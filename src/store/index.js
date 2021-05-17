@@ -18,10 +18,14 @@ export default new Vuex.Store({
     }],
     cart: [
 
-    ]
+    ],
+    orderComplete: false
   },
   mutations: {
     addProductToCart(state, product) {
+      if (state.complete) {
+        return
+      }
       let p = state.cart.filter(inCart => inCart.name === product.name)
       if (p.length > 0) {
         p[0].quantity++;
@@ -31,6 +35,9 @@ export default new Vuex.Store({
       }
     },
     removeProductFromCart(state, product) {
+      if (state.complete) {
+        return
+      }
       let p = state.cart.filter(inCart => inCart.name === product.name)
       if (p.length > 0) {
         let cartItem = p[0]
@@ -46,6 +53,9 @@ export default new Vuex.Store({
           }
         }
       }
+    },
+    completeCheckout(state) {
+      state.orderComplete = true
     }
   },
   getters: {
@@ -65,6 +75,9 @@ export default new Vuex.Store({
       if (item !== undefined && item !== null && item.name) {
         context.commit('removeProductFromCart', item)
       }
+    },
+    checkout(context) {
+      context.commit('completeCheckout')
     }
   },
   modules: {
