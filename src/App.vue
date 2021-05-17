@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <product-list msg="Welcome to Your Vue.js App" />
+    <product-list />
     <checkout />
     <cart />
   </div>

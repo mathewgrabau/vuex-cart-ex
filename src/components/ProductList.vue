@@ -14,8 +14,8 @@
           <td>{{ product.name }}</td>
           <td>{{ product.price }}</td>
           <td>
-              <button>Add to cart</button>
-              <button>Remove from cart</button>
+              <button @click="addToCart(product)">Add to cart</button>
+              <button @click="removeFromCart(product)">Remove from cart</button>
           </td>
         </tr>
       </tbody>
