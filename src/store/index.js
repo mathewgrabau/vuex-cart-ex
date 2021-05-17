@@ -26,7 +26,7 @@ export default new Vuex.Store({
       if (p.length > 0) {
         p[0].quantity++;
       } else {
-        let cartItem = { ...product, quantity: 1}
+        let cartItem = { ...product, quantity: 1 }
         state.cart.push(cartItem)
       }
     },
@@ -46,6 +46,13 @@ export default new Vuex.Store({
           }
         }
       }
+    }
+  },
+  getters: {
+    cartTotal(state) {
+      let total = 0
+      state.cart.forEach(item => total += item.quantity * item.price)
+      return total
     }
   },
   actions: {
